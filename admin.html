@@ -3,7 +3,400 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>管理员登录</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+/* 全局样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    min-height: 100vh;
+}
+
+/* 头部样式 */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+header h1 {
+    color: #2c3e50;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+header p {
+    color: #7f8c8d;
+    font-size: 1.1em;
+}
+
+/* 登录页面样式 */
+.login-container {
+    max-width: 500px;
+    margin: 50px auto;
+}
+
+/* 主要内容样式 */
+main {
+    margin-bottom: 30px;
+}
+
+/* 作品展示样式 */
+.work-display {
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.work-display h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+/* 作品网格布局 */
+.works-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.work-item {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.work-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* 作品标题区域 */
+.work-title-section {
+    background-color: #e3f2fd;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border-left: 4px solid #2196f3;
+}
+
+.work-title-section h3 {
+    color: #2196f3;
+    margin-bottom: 5px;
+    font-size: 1.5em;
+}
+
+.work-title-section p {
+    color: #666;
+    margin: 0;
+}
+
+/* 评价中的作品名称 */
+.comment-work-name {
+    color: #666;
+    font-size: 0.9em;
+    margin-left: 10px;
+    font-style: italic;
+}
+
+.work-item h3 {
+    color: #3498db;
+    margin-bottom: 10px;
+    font-size: 1.5em;
+}
+
+.work-item p {
+    margin-bottom: 10px;
+    color: #555;
+}
+
+/* 表单样式 */
+.vote-form, .login-form {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.vote-form h2, .login-form h2, .comments-section h2, .statistics-section h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: bold;
+}
+
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    font-family: inherit;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* 按钮样式 */
+.submit-btn, .login-btn, .logout-btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover, .login-btn:hover, .logout-btn:hover {
+    background-color: #2980b9;
+}
+
+.logout-btn {
+    background-color: #e74c3c;
+    margin-left: 20px;
+    padding: 8px 16px;
+    font-size: 14px;
+}
+
+.logout-btn:hover {
+    background-color: #c0392b;
+}
+
+/* 消息样式 */
+.success-message, .error-message {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.success-message {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* 管理员信息样式 */
+.admin-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.admin-info span {
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+/* 评价列表样式 */
+.comments-section {
+    margin-bottom: 40px;
+}
+
+.total-comments {
+    color: #7f8c8d;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.comments-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 20px;
+}
+
+.comment-item {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid #3498db;
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.comment-voter {
+    font-weight: bold;
+    color: #2c3e50;
+    font-size: 1.1em;
+}
+
+.comment-score {
+    background-color: #3498db;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.comment-content {
+    color: #555;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.comment-time {
+    color: #95a5a6;
+    font-size: 0.9em;
+    text-align: right;
+}
+
+.no-comments {
+    text-align: center;
+    color: #95a5a6;
+    padding: 40px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    font-size: 1.1em;
+}
+
+/* 统计信息样式 */
+.statistics-section {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.stat-item {
+    background-color: white;
+    padding: 30px 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: translateY(-5px);
+}
+
+.stat-item h3 {
+    color: #7f8c8d;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    font-weight: normal;
+}
+
+.stat-item p {
+    color: #2c3e50;
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+/* 页脚样式 */
+footer {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 2px solid #e0e0e0;
+    color: #7f8c8d;
+}
+
+footer a {
+    color: #3498db;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    header h1 {
+        font-size: 2em;
+    }
+    
+    .comments-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .admin-info {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .logout-btn {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.8em;
+    }
+    
+    .work-item h3 {
+        font-size: 1.3em;
+    }
+    
+    .stat-item p {
+        font-size: 2em;
+    }
+}
+    </style>
 </head>
 <body>
     <div class="container login-container">
