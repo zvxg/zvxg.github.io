@@ -1,0 +1,59 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>评价管理</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>评价管理</h1>
+            <div class="admin-info">
+                <span>欢迎，管理员</span>
+                <button id="logoutBtn" class="logout-btn">退出登录</button>
+            </div>
+        </header>
+        
+        <main>
+            <section class="comments-section">
+                <h2>作品评价列表</h2>
+                <p class="total-comments">总评价数：<span id="totalComments">0</span></p>
+                
+                <div class="comments-container" id="commentsContainer">
+                    <!-- 评价列表将通过JavaScript动态生成 -->
+                </div>
+                
+                <div id="noComments" class="no-comments" style="display: block;">
+                    <p>暂无评价数据</p>
+                </div>
+            </section>
+            
+            <section class="statistics-section">
+                <h2>统计信息</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h3>平均评分</h3>
+                        <p id="averageScore">0</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>最高评分</h3>
+                        <p id="maxScore">0</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>最低评分</h3>
+                        <p id="minScore">0</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p>&copy; 2024 作品投票系统</p>
+            <p><a href="index.html">返回投票页面</a></p>
+        </footer>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
