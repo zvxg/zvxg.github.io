@@ -1,0 +1,88 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作品投票系统</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>作品投票系统</h1>
+            <p>请为以下作品进行评分和评价</p>
+        </header>
+        
+        <main>
+            <section class="work-display">
+                <h2>待投票作品列表</h2>
+                <div class="works-grid">
+                    <div class="work-item">
+                        <h3>作品1：AI辅助设计作品集</h3>
+                        <p>作者：管理员</p>
+                        <p>作品描述：这是一份使用AI工具辅助设计的作品集，包含了多种设计风格和创意作品。</p>
+                    </div>
+                    <div class="work-item">
+                        <h3>作品2：机器学习算法实现</h3>
+                        <p>作者：管理员</p>
+                        <p>作品描述：包含了多种经典机器学习算法的Python实现，附有详细的注释和示例。</p>
+                    </div>
+                    <div class="work-item">
+                        <h3>作品3：响应式网页设计</h3>
+                        <p>作者：管理员</p>
+                        <p>作品描述：使用HTML、CSS和JavaScript实现的响应式网页设计，适配各种设备尺寸。</p>
+                    </div>
+                    <div class="work-item">
+                        <h3>作品4：数据分析可视化</h3>
+                        <p>作者：管理员</p>
+                        <p>作品描述：使用Python和Tableau进行数据分析和可视化的项目，包含多个案例研究。</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="vote-form">
+                <h2>投票表单</h2>
+                <form id="voteForm">
+                    <div class="form-group">
+                        <label for="workSelect">选择作品：</label>
+                        <select id="workSelect" name="workSelect" required>
+                            <option value="">请选择要投票的作品</option>
+                            <option value="1">作品1：AI辅助设计作品集</option>
+                            <option value="2">作品2：机器学习算法实现</option>
+                            <option value="3">作品3：响应式网页设计</option>
+                            <option value="4">作品4：数据分析可视化</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="voter">投票人姓名：</label>
+                        <input type="text" id="voter" name="voter" required placeholder="请输入您的姓名">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="score">评分（0-100分）：</label>
+                        <input type="number" id="score" name="score" min="0" max="100" required placeholder="请输入0-100之间的分数">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="comment">评价内容：</label>
+                        <textarea id="comment" name="comment" rows="5" required placeholder="请输入您的评价..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">提交投票</button>
+                </form>
+                
+                <div id="successMessage" class="success-message" style="display: none;">
+                    <p>投票提交成功！感谢您的参与。</p>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p>&copy; 2024 作品投票系统</p>
+            <p><a href="admin.html">管理员登录</a></p>
+        </footer>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
